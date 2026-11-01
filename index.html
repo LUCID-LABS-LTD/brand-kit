@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LUCID LABS LTD — Brand kit</title>
+<meta name="description" content="On-brand social cards and motion graphics for LUCID LABS LTD. Renderable from the CLI or the browser.">
+<link rel="icon" href="brand/logo/png/mark-32-dark.png">
+<link rel="stylesheet" href="brand/brand.css">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ll-bg);
+    color: var(--ll-text);
+    font-family: var(--ll-font);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .logo { height: 30px; width: auto; display: block; }
+  .stamp {
+    font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ll-muted); border: 1px solid var(--ll-border);
+    padding: 6px 10px; white-space: nowrap;
+  }
+
+  .hero { margin: 64px 0 0; }
+  .hero .tagline {
+    font-size: clamp(26px, 5vw, 46px);
+    line-height: 1.12;
+    letter-spacing: .04em;
+    font-weight: 800;
+    margin: 14px 0 0;
+    max-width: 18ch;
+  }
+  .hero .tagline em { font-style: normal; color: var(--ll-accent); }
+  .hero p {
+    color: var(--ll-muted);
+    font-size: 13px;
+    line-height: 1.75;
+    max-width: 58ch;
+    margin: 22px 0 0;
+  }
+
+  .rule { height: 1px; background: var(--ll-border); margin: 44px 0; border: 0; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1px;
+    background: var(--ll-border);
+    border: 1px solid var(--ll-border);
+  }
+  .tile {
+    background: var(--ll-surface);
+    padding: 22px 20px 24px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 150px;
+    transition: background .15s;
+  }
+  .tile:hover { background: #171410; }
+  .tile .idx { font-size: 9px; letter-spacing: .16em; color: var(--ll-muted); }
+  .tile h2 {
+    font-size: 14px; margin: 0; font-weight: 700;
+    letter-spacing: .05em; text-transform: uppercase;
+  }
+  .tile p { margin: 0; font-size: 11.5px; line-height: 1.65; color: var(--ll-muted); }
+  .tile .go { margin-top: auto; font-size: 10px; letter-spacing: .12em; color: var(--ll-accent); text-transform: uppercase; }
+
+  .cli {
+    margin-top: 40px;
+    border: 1px solid var(--ll-border);
+    background: var(--ll-surface);
+  }
+  .cli .bar {
+    display: flex; gap: 6px; align-items: center;
+    padding: 9px 12px; border-bottom: 1px solid var(--ll-border);
+    font-size: 9px; letter-spacing: .14em; color: var(--ll-muted); text-transform: uppercase;
+  }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ll-border); }
+  .dot.live { background: var(--ll-green); }
+  pre {
+    margin: 0; padding: 16px; overflow-x: auto;
+    font-size: 12px; line-height: 1.9; color: var(--ll-text);
+  }
+  pre .c { color: var(--ll-muted); }
+  pre .a { color: var(--ll-accent); }
+
+  footer {
+    margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--ll-border);
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    font-size: 9.5px; letter-spacing: .1em; color: var(--ll-muted); text-transform: uppercase;
+  }
+  footer a { color: var(--ll-muted); text-decoration: none; border-bottom: 1px solid var(--ll-border); }
+  footer a:hover { color: var(--ll-accent); border-color: var(--ll-accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img class="logo" src="brand/logo/logo-full.svg" alt="LUCID LABS LTD">
+    <div class="stamp">Brand kit · v0.1</div>
+  </header>
+
+  <section class="hero">
+    <div class="ll-eyebrow">Brand kit</div>
+    <h1 class="tagline">WE DON'T PROPOSE<br>THE FUTURE.<br><em>WE BUILD IT.</em></h1>
+    <p>
+      Cards and motion graphics for LUCID LABS LTD, drawn with Canvas 2D and rendered
+      frame-by-frame. Compliant by construction: amber is emphasis only, green means
+      <strong>BUILT</strong>, and every export is measured against the brand rules.
+    </p>
+  </section>
+
+  <hr class="rule">
+
+  <section class="grid">
+    <a class="tile" href="cards/">
+      <div class="idx">01</div>
+      <h2>Card Studio</h2>
+      <p>Paste a post, pick a layout, export a 2× PNG. The preview is the export.</p>
+      <div class="go">Open →</div>
+    </a>
+    <a class="tile" href="motion/">
+      <div class="idx">02</div>
+      <h2>Motion Player</h2>
+      <p>Ten deterministic comps. Scrub, edit props, record a loop in the browser.</p>
+      <div class="go">Open →</div>
+    </a>
+    <a class="tile" href="samples/">
+      <div class="idx">03</div>
+      <h2>Samples</h2>
+      <p>The curated card set. Every file passed the amber-budget check at build time.</p>
+      <div class="go">Open →</div>
+    </a>
+    <a class="tile" href="https://github.com/LUCID-LABS-LTD/brand-kit">
+      <div class="idx">04</div>
+      <h2>Repository</h2>
+      <p>CLI, scene specs, alpha overlays, fonts. MIT code, brand assets reserved.</p>
+      <div class="go">Open →</div>
+    </a>
+  </section>
+
+  <section class="cli">
+    <div class="bar"><span class="dot live"></span><span class="dot"></span><span class="dot"></span>&nbsp; CLI</div>
+    <pre><span class="c"># one card from a post</span>
+npx <span class="a">github:LUCID-LABS-LTD/brand-kit</span> card --text "We shipped V3." --layout announcement
+
+<span class="c"># one clip from a scene spec</span>
+npx <span class="a">github:LUCID-LABS-LTD/brand-kit</span> render --spec presets/example-scene.json --out out/demo.mp4
+
+<span class="c"># transparent overlays for an editor</span>
+npx <span class="a">github:LUCID-LABS-LTD/brand-kit</span> overlays --comps lower-third,built-stamp --formats webm,mov</pre>
+  </section>
+
+  <footer>
+    <span>© LUCID LABS LTD · Lagos, NG</span>
+    <span>Code MIT · Assets reserved · <a href="docs/QUICKSTART.md">Docs</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
