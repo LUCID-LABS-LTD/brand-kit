@@ -1,0 +1,33 @@
+[
+  {
+    "text": "Nigeria's first autonomous delivery fleet is live. Built end-to-end in Lagos.",
+    "layout": "announcement",
+    "size": "16x9",
+    "out": "out/fleet-live.png"
+  },
+  {
+    "text": "Most robotics startups in Africa die in the demo stage. We just took ours into a live warehouse.",
+    "layout": "hook",
+    "size": "4x5",
+    "out": "out/thread-cover.png"
+  },
+  {
+    "text": "62 out of 62 units passed the V3 drop test. Every chassis cleared 1.8 metres onto concrete.",
+    "layout": "stat",
+    "size": "16x9",
+    "accent": "62"
+  },
+  {
+    "text": "Fleet control shipped to production this morning. Navigation, power and the operator console are all live.",
+    "layout": "buildlog",
+    "size": "16x9",
+    "theme": "dark"
+  },
+  {
+    "text": "Hardware is just software that has to survive the rain.",
+    "layout": "quote",
+    "size": "1x1",
+    "theme": "paper",
+    "author": "LUCID LABS LTD · FIELD NOTE 04"
+  }
+]

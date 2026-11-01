@@ -1,0 +1,133 @@
+/*!
+ * LUCID LABS LTD — shared brand styles
+ * For app chrome, docs and studio pages. Cards never use this file:
+ * cards are drawn with Canvas so the preview is the export.
+ */
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("./fonts/JetBrainsMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("./fonts/JetBrainsMono-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("./fonts/JetBrainsMono-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("./fonts/JetBrainsMono-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ll-bg: #0b0a08;
+  --ll-surface: #12100c;
+  --ll-text: #e8e2d4;
+  --ll-muted: #8a8272;
+  --ll-accent: #ffb000;
+  --ll-border: #2a2620;
+  --ll-green: #3fbf6b;
+
+  --ll-paper-bg: #f0ebdd;
+  --ll-paper-surface: #e9e3d2;
+  --ll-paper-text: #26221a;
+  --ll-paper-muted: #6e675a;
+  --ll-paper-accent: #9a5b00;
+  --ll-paper-border: #d5cdb8;
+
+  --ll-font: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+  --ll-radius: 2px;
+}
+
+.ll-paper {
+  --ll-bg: #f0ebdd;
+  --ll-surface: #e9e3d2;
+  --ll-text: #26221a;
+  --ll-muted: #6e675a;
+  --ll-accent: #9a5b00;
+  --ll-border: #d5cdb8;
+  --ll-green: #1e7a45;
+}
+
+/* type ------------------------------------------------------------------ */
+
+.ll-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ll-accent);
+}
+.ll-h1 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--ll-text);
+}
+.ll-label {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ll-muted);
+}
+.ll-body {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--ll-muted);
+}
+.ll-code {
+  font-family: var(--ll-font);
+  font-size: 12px;
+  color: var(--ll-accent);
+}
+
+/* surfaces -------------------------------------------------------------- */
+
+.ll-panel {
+  background: var(--ll-surface);
+  border: 1px solid var(--ll-border);
+  border-radius: var(--ll-radius);
+}
+
+.ll-btn {
+  background: var(--ll-accent);
+  color: #1a1200;
+  border: 0;
+  border-radius: var(--ll-radius);
+  font-family: var(--ll-font);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 18px;
+  cursor: pointer;
+}
+.ll-btn:hover { background: #ffc23d; }
+
+.ll-btn-ghost {
+  background: transparent;
+  color: var(--ll-text);
+  border: 1px solid var(--ll-border);
+}
+.ll-btn-ghost:hover { border-color: var(--ll-accent); color: var(--ll-accent); }
+
+/* legacy of the brand mark ---------------------------------------------- */
+
+.ll-mark-rule {
+  height: 1px;
+  background: var(--ll-border);
+  border: 0;
+  margin: 24px 0;
+}

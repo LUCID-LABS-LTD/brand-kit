@@ -1,0 +1,10 @@
+node_modules/
+out/
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# ProRes 4444 of the scanline loop is ~90 MB. The WebM carries the same alpha.
+overlays/**/scanlines.mov

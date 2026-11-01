@@ -1,0 +1,85 @@
+{
+  "generated": "2026-11-01T16:35:45.158Z",
+  "items": [
+    {
+      "slug": "fleet-live",
+      "file": "fleet-live.png",
+      "layout": "announcement",
+      "theme": "dark",
+      "size": "1600x900",
+      "amber": 2.01,
+      "brand": "pass",
+      "headline": "Nigeria's first autonomous delivery fleet is live."
+    },
+    {
+      "slug": "thread-opener",
+      "file": "thread-opener.png",
+      "layout": "hook",
+      "theme": "dark",
+      "size": "1080x1350",
+      "amber": 0.77,
+      "brand": "pass",
+      "headline": "Most robotics startups in Africa die in the demo stage."
+    },
+    {
+      "slug": "drop-test",
+      "file": "drop-test.png",
+      "layout": "stat",
+      "theme": "dark",
+      "size": "1600x900",
+      "amber": 2.16,
+      "brand": "pass",
+      "headline": "62 out of 62 units passed the V3 drop test."
+    },
+    {
+      "slug": "build-status",
+      "file": "build-status.png",
+      "layout": "buildlog",
+      "theme": "dark",
+      "size": "1600x900",
+      "amber": 0.81,
+      "brand": "pass",
+      "headline": "Fleet control shipped to production this morning."
+    },
+    {
+      "slug": "build-window",
+      "file": "build-window.png",
+      "layout": "terminal",
+      "theme": "dark",
+      "size": "1600x900",
+      "amber": 0.45,
+      "brand": "pass",
+      "headline": "We rebuilt the navigation stack from scratch in eleven weeks."
+    },
+    {
+      "slug": "field-note",
+      "file": "field-note.png",
+      "layout": "quote",
+      "theme": "paper",
+      "size": "1080x1080",
+      "amber": 0.33,
+      "brand": "pass",
+      "headline": "Hardware is just software that has to survive the rain."
+    },
+    {
+      "slug": "quiet-mark",
+      "file": "quiet-mark.png",
+      "layout": "minimal",
+      "theme": "dark",
+      "size": "1080x1080",
+      "amber": 0.03,
+      "brand": "pass",
+      "headline": "We don't propose the future."
+    },
+    {
+      "slug": "paper-announce",
+      "file": "paper-announce.png",
+      "layout": "announcement",
+      "theme": "paper",
+      "size": "1080x1350",
+      "amber": 0.53,
+      "brand": "pass",
+      "headline": "The V3 wearable finishes its first full month in the field."
+    }
+  ]
+}

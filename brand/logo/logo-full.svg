@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 140">
+  <title>Lucid Labs Ltd — full lockup (dark theme)</title>
+  <defs>
+    <filter id="phosphor-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3.2" result="blur"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="blur"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#phosphor-glow)" transform="translate(18,20)">
+    <polyline points="36,30 68,60 36,90" fill="none" stroke="#FFB000" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"></polyline>
+    <rect x="76" y="74" width="28" height="13" fill="#FFB000"></rect>
+  </g>
+  <text x="170" y="86" font-family="&#39;JetBrains Mono&#39;,&#39;IBM Plex Mono&#39;,monospace" font-weight="700" font-size="52" letter-spacing="5" fill="#E8E2D4">LUCID LABS<tspan dx="18" font-size="26" font-weight="500" letter-spacing="3" fill="#8A8272">LTD</tspan></text>
+</svg>

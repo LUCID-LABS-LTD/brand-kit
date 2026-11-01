@@ -1,0 +1,49 @@
+{
+  "name": "@lucid-labs/brand-kit",
+  "version": "0.1.0",
+  "description": "LUCID LABS LTD brand engine — compliant social cards and motion graphics, renderable from the CLI or the browser.",
+  "bin": {
+    "brandkit": "./cli/brandkit.mjs"
+  },
+  "files": [
+    "brand",
+    "cards",
+    "motion",
+    "presets",
+    "cli",
+    "docs",
+    "overlays",
+    "samples"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LUCID-LABS-LTD/brand-kit.git"
+  },
+  "homepage": "https://github.com/LUCID-LABS-LTD/brand-kit#readme",
+  "bugs": {
+    "url": "https://github.com/LUCID-LABS-LTD/brand-kit/issues"
+  },
+  "scripts": {
+    "studio": "npx --yes serve . -p 4173",
+    "card": "node cli/brandkit.mjs card",
+    "render": "node cli/brandkit.mjs render",
+    "overlays": "node cli/brandkit.mjs overlays",
+    "doctor": "node cli/brandkit.mjs doctor",
+    "list": "node cli/brandkit.mjs list"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.80"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "lucid-labs",
+    "brand",
+    "social",
+    "motion-graphics",
+    "canvas",
+    "ffmpeg"
+  ],
+  "license": "MIT"
+}

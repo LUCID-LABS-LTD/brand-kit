@@ -1,0 +1,225 @@
+{
+  "generated": "2026-11-01T16:31:28.316Z",
+  "items": [
+    {
+      "comp": "lower-third",
+      "label": "Lower third",
+      "size": "1920x1080",
+      "width": 1920,
+      "height": 1080,
+      "duration": 4,
+      "format": "webm",
+      "alpha": true,
+      "file": "overlays/1920x1080/lower-third.webm"
+    },
+    {
+      "comp": "lower-third",
+      "label": "Lower third",
+      "size": "1920x1080",
+      "width": 1920,
+      "height": 1080,
+      "duration": 4,
+      "format": "mov",
+      "alpha": true,
+      "file": "overlays/1920x1080/lower-third.mov"
+    },
+    {
+      "comp": "lower-third",
+      "label": "Lower third",
+      "size": "1080x1920",
+      "width": 1080,
+      "height": 1920,
+      "duration": 4,
+      "format": "webm",
+      "alpha": true,
+      "file": "overlays/1080x1920/lower-third.webm"
+    },
+    {
+      "comp": "lower-third",
+      "label": "Lower third",
+      "size": "1080x1920",
+      "width": 1080,
+      "height": 1920,
+      "duration": 4,
+      "format": "mov",
+      "alpha": true,
+      "file": "overlays/1080x1920/lower-third.mov"
+    },
+    {
+      "comp": "built-stamp",
+      "label": "BUILT stamp",
+      "size": "1920x1080",
+      "width": 1920,
+      "height": 1080,
+      "duration": 2.5,
+      "format": "webm",
+      "alpha": true,
+      "file": "overlays/1920x1080/built-stamp.webm"
+    },
+    {
+      "comp": "built-stamp",
+      "label": "BUILT stamp",
+      "size": "1920x1080",
+      "width": 1920,
+      "height": 1080,
+      "duration": 2.5,
+      "format": "mov",
+      "alpha": true,
+      "file": "overlays/1920x1080/built-stamp.mov"
+    },
+    {
+      "comp": "built-stamp",
+      "label": "BUILT stamp",
+      "size": "1080x1920",
+      "width": 1080,
+      "height": 1920,
+      "duration": 2.5,
+      "format": "webm",
+      "alpha": true,
+      "file": "overlays/1080x1920/built-stamp.webm"
+    },
+    {
+      "comp": "built-stamp",
+      "label": "BUILT stamp",
+      "size": "1080x1920",
+      "width": 1080,
+      "height": 1920,
+      "duration": 2.5,
+      "format": "mov",
+      "alpha": true,
+      "file": "overlays/1080x1920/built-stamp.mov"
+    },
+    {
+      "comp": "flash-wipe",
+      "label": "Flash wipe",
+      "size": "1920x1080",
+      "width": 1920,
+      "height": 1080,
+      "duration": 0.5,
+      "format": "webm",
+      "alpha": true,
+      "file": "overlays/1920x1080/flash-wipe.webm"
+    },
+    {
+      "comp": "flash-wipe",
+      "label": "Flash wipe",
+      "size": "1920x1080",
+      "width": 1920,
+      "height": 1080,
+      "duration": 0.5,
+      "format": "mov",
+      "alpha": true,
+      "file": "overlays/1920x1080/flash-wipe.mov"
+    },
+    {
+      "comp": "flash-wipe",
+      "label": "Flash wipe",
+      "size": "1080x1920",
+      "width": 1080,
+      "height": 1920,
+      "duration": 0.5,
+      "format": "webm",
+      "alpha": true,
+      "file": "overlays/1080x1920/flash-wipe.webm"
+    },
+    {
+      "comp": "flash-wipe",
+      "label": "Flash wipe",
+      "size": "1080x1920",
+      "width": 1080,
+      "height": 1920,
+      "duration": 0.5,
+      "format": "mov",
+      "alpha": true,
+      "file": "overlays/1080x1920/flash-wipe.mov"
+    },
+    {
+      "comp": "scanlines",
+      "label": "Scanlines",
+      "size": "1920x1080",
+      "width": 1920,
+      "height": 1080,
+      "duration": 6,
+      "format": "webm",
+      "alpha": true,
+      "file": "overlays/1920x1080/scanlines.webm"
+    },
+    {
+      "comp": "scanlines",
+      "label": "Scanlines",
+      "size": "1920x1080",
+      "width": 1920,
+      "height": 1080,
+      "duration": 6,
+      "format": "mov",
+      "alpha": true,
+      "file": "overlays/1920x1080/scanlines.mov"
+    },
+    {
+      "comp": "scanlines",
+      "label": "Scanlines",
+      "size": "1080x1920",
+      "width": 1080,
+      "height": 1920,
+      "duration": 6,
+      "format": "webm",
+      "alpha": true,
+      "file": "overlays/1080x1920/scanlines.webm"
+    },
+    {
+      "comp": "scanlines",
+      "label": "Scanlines",
+      "size": "1080x1920",
+      "width": 1080,
+      "height": 1920,
+      "duration": 6,
+      "format": "mov",
+      "alpha": true,
+      "file": "overlays/1080x1920/scanlines.mov"
+    },
+    {
+      "comp": "bar-sweep",
+      "label": "Progress bar",
+      "size": "1920x1080",
+      "width": 1920,
+      "height": 1080,
+      "duration": 5,
+      "format": "webm",
+      "alpha": true,
+      "file": "overlays/1920x1080/bar-sweep.webm"
+    },
+    {
+      "comp": "bar-sweep",
+      "label": "Progress bar",
+      "size": "1920x1080",
+      "width": 1920,
+      "height": 1080,
+      "duration": 5,
+      "format": "mov",
+      "alpha": true,
+      "file": "overlays/1920x1080/bar-sweep.mov"
+    },
+    {
+      "comp": "bar-sweep",
+      "label": "Progress bar",
+      "size": "1080x1920",
+      "width": 1080,
+      "height": 1920,
+      "duration": 5,
+      "format": "webm",
+      "alpha": true,
+      "file": "overlays/1080x1920/bar-sweep.webm"
+    },
+    {
+      "comp": "bar-sweep",
+      "label": "Progress bar",
+      "size": "1080x1920",
+      "width": 1080,
+      "height": 1920,
+      "duration": 5,
+      "format": "mov",
+      "alpha": true,
+      "file": "overlays/1080x1920/bar-sweep.mov"
+    }
+  ]
+}

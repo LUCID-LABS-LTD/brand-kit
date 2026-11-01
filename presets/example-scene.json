@@ -1,0 +1,49 @@
+{
+  "name": "lucid-demo",
+  "size": "1920x1080",
+  "fps": 30,
+  "theme": "dark",
+  "duration": 12,
+  "scenes": [
+    {
+      "comp": "boot-sting",
+      "in": 0,
+      "out": 2.4,
+      "props": { "tagline": "WE DON'T PROPOSE THE FUTURE. WE BUILD IT." }
+    },
+    {
+      "comp": "typewriter",
+      "in": 2.4,
+      "out": 5.6,
+      "props": {
+        "kicker": "LUCID LABS LTD · LAGOS, NG",
+        "text": "Nigeria's first autonomous delivery fleet is live.",
+        "accent": "autonomous"
+      }
+    },
+    {
+      "comp": "flash-wipe",
+      "in": 5.6,
+      "out": 6.0,
+      "props": {}
+    },
+    {
+      "comp": "stat-counter",
+      "in": 6.0,
+      "out": 9.0,
+      "props": { "value": 62, "suffix": "%", "label": "Drop test pass rate" }
+    },
+    {
+      "comp": "section-card",
+      "in": 9.0,
+      "out": 11.0,
+      "props": { "kicker": "BUILT, NOT PROPOSED", "text": "Engineered from zero." }
+    },
+    {
+      "comp": "end-card",
+      "in": 11.0,
+      "out": 12.0,
+      "props": { "text": "lucidlabsltd.com" }
+    }
+  ]
+}
