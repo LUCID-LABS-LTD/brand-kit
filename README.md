@@ -23,6 +23,8 @@ brand-kit/
 └─ docs/       quickstart, scene spec, brand rules, agent notes
 ```
 
+**Live demo:** https://lucid-labs-ltd.github.io/brand-kit/ — Card Studio, Motion Player and the sample gallery, no install.
+
 ---
 
 ## Quickstart

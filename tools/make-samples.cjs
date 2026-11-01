@@ -123,6 +123,7 @@ const JOBS = [
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LUCID LABS LTD — Card samples</title>
+<link rel="icon" href="../brand/logo/png/mark-32-dark.png">
 <link rel="stylesheet" href="../brand/brand.css">
 <style>
   body{background:var(--ll-bg);color:var(--ll-text);font-family:var(--ll-font);margin:0;padding:40px 28px 80px;}
