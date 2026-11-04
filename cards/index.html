@@ -282,7 +282,14 @@
   if (!els.text.value) {
     els.text.value = "Nigeria's first autonomous delivery fleet is live. Built end-to-end in Lagos — navigation, power, and fleet control, engineered from zero.";
   }
-  render();
+  // Re-render once the TTFs are in memory: a cold load would otherwise draw
+  // the first card in the fallback monospace.
+  var fontsReady = (document.fonts && document.fonts.load)
+    ? Promise.all([400, 500, 700, 800].map(function (w) {
+        return document.fonts.load(w + " 16px 'JetBrains Mono'").catch(function () {});
+      }))
+    : Promise.resolve();
+  fontsReady.then(render);
 })();
 </script>
 </body>
