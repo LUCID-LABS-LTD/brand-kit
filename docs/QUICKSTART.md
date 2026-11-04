@@ -116,9 +116,10 @@ npx --yes serve . -p 4173
 open http://localhost:4173/motion/
 ```
 
-Scrub any comp, change props live, and **Record one loop** to a WebM straight
-from the canvas (`MediaRecorder`). Good for quick review; use the CLI when you
-need MP4 or true alpha.
+Scrub any comp, change props live, then **Download MP4**. The page encodes H.264
+with WebCodecs and muxes the file in the browser (`motion/vendor/mp4-muxer.js`,
+MIT) — one exact loop, ready to upload. Browsers without WebCodecs fall back to
+`MediaRecorder`. Use the CLI when you need true alpha or a batch render.
 
 ---
 

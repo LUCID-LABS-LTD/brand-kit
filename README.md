@@ -123,6 +123,16 @@ always frame 214. That is what makes the output usable by an agent.
 
 Read `docs/SCENE-SPEC.md` for the JSON format.
 
+### Export from the browser
+
+Open the [Motion Player](https://lucid-labs-ltd.github.io/brand-kit/motion/), pick a
+comp, pick a size, hit **Download MP4**. It encodes H.264 with WebCodecs and muxes
+the file locally — nothing is uploaded, no CLI, no install, works on a phone.
+
+The result is exactly one loop at the selected size, so it drops straight into a
+post. Browsers without WebCodecs fall back to `MediaRecorder` (MP4 on Safari, WebM
+elsewhere). The CLI is still the way to get true alpha or a batch render.
+
 ---
 
 ## Overlays

@@ -78,9 +78,9 @@
       </select>
     </div>
 
-    <button class="btn" id="record">Record one loop (WebM)</button>
+    <button class="btn" id="record">Download MP4</button>
     <button class="btn ghost" id="png">Save current frame (PNG)</button>
-    <div class="sub" style="margin-top:14px">For MP4 or alpha overlays:<br><code style="color:var(--amber);font-size:10px">brandkit render --spec scene.json</code></div>
+    <div class="sub" style="margin-top:14px">H.264 MP4, sized for X — upload it straight from your phone.<br><span id="exportNote"></span></div>
   </aside>
 
   <main class="stage">
@@ -97,6 +97,7 @@
 
 <script src="../brand/engine.js"></script>
 <script src="comps.js"></script>
+<script src="vendor/mp4-muxer.js"></script>
 <script>
 (function(){
   var canvas = document.getElementById('stage');
@@ -173,10 +174,9 @@
     document.getElementById('compName').textContent = c ? c.label : state.comp;
   }
 
-  function drawFrame(){
+  function renderAt(t){
     var d = dims();
     var comp = LucidMotion.get(state.comp);
-    var dur = comp ? comp.duration : 3;
     var theme = LucidBrand.THEMES[state.theme];
     ctx.setTransform(1,0,0,1,0,0);
     ctx.clearRect(0,0,d.w,d.h);
@@ -184,9 +184,15 @@
     ctx.fillRect(0,0,d.w,d.h);
     LucidMotion.drawScene(
       { ctx: ctx, w: d.w, h: d.h, theme: theme, themeKey: state.theme },
-      { comp: state.comp, in: 0, out: dur, props: state.props },
-      state.t
+      { comp: state.comp, in: 0, out: comp ? comp.duration : 3, props: state.props },
+      t
     );
+  }
+
+  function drawFrame(){
+    var comp = LucidMotion.get(state.comp);
+    var dur = comp ? comp.duration : 3;
+    renderAt(state.t);
     document.getElementById('time').textContent = state.t.toFixed(2) + 's / ' + dur.toFixed(2) + 's';
     document.getElementById('scrub').value = Math.round((state.t / dur) * 1000);
   }
@@ -229,37 +235,183 @@
     }, 'image/png');
   };
 
-  document.getElementById('record').onclick = function(){
-    if (!window.MediaRecorder) { toast('Recording unsupported'); return; }
-    var stream = canvas.captureStream(30);
-    var mime = MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9' : 'video/webm';
-    var rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 8000000 });
-    var chunks = [];
-    var comp = LucidMotion.get(state.comp);
-    var dur = comp ? comp.duration : 3;
-    rec.ondataavailable = function(e){ if (e.data.size) chunks.push(e.data); };
-    rec.onstop = function(){
-      var blob = new Blob(chunks, { type: 'video/webm' });
-      var a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'lucid-' + state.comp + '.webm';
-      a.click();
-      setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
-      toast('Recorded one loop');
-    };
+  // ---- video export -------------------------------------------------------
+  // Primary path: WebCodecs H.264 + an MP4 muxer. Frame-exact, faster than
+  // realtime, and the file is uploadable to X without a re-encode.
+  // Fallback: MediaRecorder (mp4 where the browser supports it, else webm).
+  var EXPORT_FPS = 30;
+  var H264 = ['avc1.640028','avc1.4d0028','avc1.420028','avc1.64002a','avc1.4d002a','avc1.42002a','avc1.64001f'];
+  var exportBtn = document.getElementById('record');
+  var busy = false;
+
+  var canMp4 = !!(window.VideoEncoder && window.Mp4Muxer && window.VideoFrame);
+  document.getElementById('exportNote').textContent = canMp4
+    ? 'Encoding runs in your browser.'
+    : 'This browser has no WebCodecs — the export falls back to its recorder.';
+
+  function saveBlob(blob, name){
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 10000);
+  }
+
+  function setBusy(on, label){
+    busy = on;
+    exportBtn.disabled = on;
+    exportBtn.textContent = label || 'Download MP4';
+    exportBtn.style.opacity = on ? '.65' : '1';
+    exportBtn.style.cursor = on ? 'progress' : 'pointer';
+  }
+
+  function tick(){ return new Promise(function(r){ setTimeout(r, 0); }); }
+
+  async function fontsReady(){
+    if (!document.fonts || !document.fonts.load) return;
+    try {
+      await Promise.all([400,500,700,800].map(function(w){
+        return document.fonts.load(w + " 16px 'JetBrains Mono'");
+      }));
+    } catch (e) {}
+  }
+
+  function pausePlayback(){
+    var was = state.playing;
     state.playing = false;
     document.getElementById('play').textContent = 'Play';
+    return was;
+  }
+
+  function resumePlayback(was){
     state.t = 0;
+    if (was) { state.playing = true; document.getElementById('play').textContent = 'Pause'; }
     drawFrame();
+  }
+
+  async function pickCodec(w, h, bps){
+    for (var i = 0; i < H264.length; i++){
+      try {
+        var s = await VideoEncoder.isConfigSupported({
+          codec: H264[i], width: w, height: h, bitrate: bps, framerate: EXPORT_FPS, avc: { format: 'avc' }
+        });
+        if (s.supported) return H264[i];
+      } catch (e) {}
+    }
+    return null;
+  }
+
+  async function exportMp4(){
+    var d = dims();
+    var comp = LucidMotion.get(state.comp);
+    var dur = comp ? comp.duration : 3;
+    var total = Math.max(1, Math.round(dur * EXPORT_FPS));
+    var bps = Math.min(14000000, Math.max(3000000, Math.round(d.w * d.h * EXPORT_FPS * 0.12)));
+    var was = pausePlayback();
+
+    await fontsReady();
+    var codec = await pickCodec(d.w, d.h, bps);
+    if (!codec) throw new Error('No H.264 encoder for ' + d.w + 'x' + d.h);
+
+    var muxer = new Mp4Muxer.Muxer({
+      target: new Mp4Muxer.ArrayBufferTarget(),
+      video: { codec: 'avc', width: d.w, height: d.h, frameRate: EXPORT_FPS },
+      fastStart: 'in-memory'
+    });
+
+    var encodeError = null;
+    var encoder = new VideoEncoder({
+      output: function(chunk, meta){ muxer.addVideoChunk(chunk, meta); },
+      error: function(e){ encodeError = e; }
+    });
+    encoder.configure({
+      codec: codec, width: d.w, height: d.h, bitrate: bps, framerate: EXPORT_FPS,
+      latencyMode: 'quality', avc: { format: 'avc' }
+    });
+
+    for (var f = 0; f < total; f++){
+      if (encodeError) { try { encoder.close(); } catch (e) {} throw encodeError; }
+      renderAt(f / EXPORT_FPS);
+      var vf = new VideoFrame(canvas, {
+        timestamp: Math.round(f * 1000000 / EXPORT_FPS),
+        duration: Math.round(1000000 / EXPORT_FPS)
+      });
+      encoder.encode(vf, { keyFrame: f % EXPORT_FPS === 0 });
+      vf.close();
+      if (encoder.encodeQueueSize > 8) await new Promise(function(r){ setTimeout(r, 4); });
+      if (f % 5 === 0){
+        setBusy(true, 'Encoding ' + Math.round((f / total) * 100) + '%');
+        await tick();
+      }
+    }
+
+    setBusy(true, 'Finishing…');
+    await encoder.flush();
+    encoder.close();
+    muxer.finalize();
+
+    var blob = new Blob([muxer.target.buffer], { type: 'video/mp4' });
+    saveBlob(blob, 'lucid-' + state.comp + '-' + d.w + 'x' + d.h + '.mp4');
+    resumePlayback(was);
+    toast('MP4 saved · ' + d.w + '×' + d.h + ' · ' + dur.toFixed(1) + 's');
+  }
+
+  function recordFallback(){
+    if (!window.MediaRecorder){ toast('This browser cannot export video'); return; }
+    var types = ['video/mp4;codecs=avc1.42E01E','video/mp4;codecs=avc1','video/mp4',
+                 'video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'];
+    var mime = null;
+    for (var i = 0; i < types.length; i++){
+      if (MediaRecorder.isTypeSupported(types[i])) { mime = types[i]; break; }
+    }
+    if (!mime){ toast('This browser cannot export video'); return; }
+
+    var isMp4 = mime.indexOf('mp4') >= 0;
+    var ext = isMp4 ? 'mp4' : 'webm';
+    var d = dims();
+    var comp = LucidMotion.get(state.comp);
+    var dur = comp ? comp.duration : 3;
+    var was = pausePlayback();
+    var stream = canvas.captureStream(EXPORT_FPS);
+    var rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 8000000 });
+    var chunks = [];
+    setBusy(true, 'Recording 0%');
+    rec.ondataavailable = function(e){ if (e.data.size) chunks.push(e.data); };
+    rec.onstop = function(){
+      var blob = new Blob(chunks, { type: isMp4 ? 'video/mp4' : 'video/webm' });
+      saveBlob(blob, 'lucid-' + state.comp + '-' + d.w + 'x' + d.h + '.' + ext);
+      resumePlayback(was);
+      setBusy(false);
+      toast(isMp4 ? 'MP4 saved · ' + d.w + '×' + d.h : 'Saved as WebM — this browser cannot encode MP4');
+    };
+    state.t = 0;
+    renderAt(0);
     rec.start();
     var started = performance.now();
     (function step(){
       var t = (performance.now() - started) / 1000;
-      state.t = t;
-      drawFrame();
+      state.t = Math.min(t, dur);
+      renderAt(state.t);
+      setBusy(true, 'Recording ' + Math.min(100, Math.round((state.t / dur) * 100)) + '%');
       if (t < dur) requestAnimationFrame(step);
       else rec.stop();
     })();
+  }
+
+  exportBtn.onclick = async function(){
+    if (busy) return;
+    if (!canMp4){ recordFallback(); return; }
+    setBusy(true, 'Preparing…');
+    try {
+      await exportMp4();
+      setBusy(false);
+    } catch (e){
+      console.warn('MP4 export failed, using MediaRecorder instead', e);
+      setBusy(false);
+      recordFallback();
+    }
   };
 
   document.getElementById('size').value = state.size;

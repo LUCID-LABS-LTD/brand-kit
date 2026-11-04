@@ -60,6 +60,8 @@ npx github:LUCID-LABS-LTD/brand-kit render --spec scene.json --out out/clip.mp4
 - Scene specs are JSON; see `docs/SCENE-SPEC.md`.
 - `--alpha` produces a transparent clip.
 - Overlays are pre-rendered in `overlays/`; prefer reusing them over re-rendering.
+- In the browser, `motion/` has a **Download MP4** button (WebCodecs H.264, in-page
+  muxing) that yields exactly one loop at the selected size. No server needed.
 
 ## Editing the kit
 
